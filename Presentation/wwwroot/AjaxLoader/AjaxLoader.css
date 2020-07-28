@@ -1,0 +1,16 @@
+﻿        .Myloading {
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.7);
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 10;
+    }
+
+        .Myloading img {
+            position: fixed;
+            top: 45%;
+            right: 48%;
+            z-index: 8000;
+        }

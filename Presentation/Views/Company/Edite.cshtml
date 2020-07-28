@@ -1,0 +1,268 @@
+﻿
+@{
+    ViewData["Title"] = "Edite";
+}
+
+<link href="~/plugins/toastr/toastr.css" rel="stylesheet" />
+<link href="~/plugins/select2/select2.min.css" rel="stylesheet" />
+<style>
+    select {
+        direction: ltr;
+    }
+
+    option {
+        text-align: left;
+        direction: ltr;
+    }
+
+    label {
+        float: left;
+    }
+
+    input {
+        direction: ltr;
+    }
+</style>
+
+
+<div class="container">
+
+    <div class="was-validated">
+        
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname" style="visibility:hidden"> ID</label>
+            <input  type="text" class="form-control" id="id" name="id" value="@ViewBag.selected.Id" style="visibility:hidden">
+        </div>
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname"> Business_Type</label>
+            <select class="form-control" id="Business" name="Business">
+
+                @Html.Raw(ViewBag.BusinesType)
+
+            </select>
+        </div>
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname">Organization_Type </label>
+            <select class="form-control" id="Organization" name="Organization">
+                @Html.Raw(ViewBag.Organizationtype)
+
+            </select>
+
+        </div>
+
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname">  Organization Name (Arabic)</label>
+            <input type="text" class="form-control" id="namearabic" name="namearabic" value="@ViewBag.selected.Organization_Name_Ar">
+        </div>
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname"> Organization Name (English)</label>
+            <input type="text" class="form-control" id="nameenglish" name="nameenglish" value="@ViewBag.selected.Organization_Name_En">
+        </div>
+
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname"> PO-Box </label>
+            <input type="text" class="form-control" id="box" name="box" value="@ViewBag.selected.Po_Box">
+        </div>
+
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname"> Telephone No </label>
+            <input type="text" class="form-control" id="phone" name="phone" value="@ViewBag.selected.Phone_No">
+        </div>
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname"> Cr_Number </label>
+            <input type="text" class="form-control" id="crnumber" name="crnumber" value="@ViewBag.selected.Cr_Number">
+        </div>
+
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname"> Fax No </label>
+            <input type="text" class="form-control" id="fax" name="fax" value="@ViewBag.selected.Fax_No">
+        </div>
+
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname"> e-Mail Address </label>
+            <input type="text" class="form-control" id="email" name="email" value="@ViewBag.selected.Email">
+        </div>
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname"> Website </label>
+            <input type="text" class="form-control" id="website" name="website" value="@ViewBag.selected.Website">
+        </div>
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname"> Membership_Date </label>
+            <input type="text" class="form-control" id="membershipdate" name="membershipdate" value="@ViewBag.selected.Membership_Date">
+        </div>
+
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname">Membership_Renew_Date  </label>
+            <input type="text" class="form-control" id="membershiprenew" name="membershiprenew" value="@ViewBag.selected.Membership_Renew_Date">
+        </div>
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname"> Membership_Next_RenewDdate </label>
+            <input type="text" class="form-control" id="memnextrenewdate" name="memnextrenewdate" value="@ViewBag.selected.Membership_Next_RenewDdate">
+        </div>
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname"> Company_Type </label>
+            <input type="text" class="form-control" id="companytype" name="companytype" value="@ViewBag.selected.Company_Type">
+        </div>
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname"> Contact_Person_Ar </label>
+            <input type="text" class="form-control" id="contacrpersonarabic" name="contacrpersonarabic" value="@ViewBag.selected.Contact_Person_Ar">
+        </div>
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname">Contact_Person_En  </label>
+            <input type="text" class="form-control" id="contactpersoneng" name="contactpersoneng" value="@ViewBag.selected.Contact_Person_En">
+        </div>
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname">Address_En  </label>
+            <input type="text" class="form-control" id="addresseng" name="addresseng" value="@ViewBag.selected.Address_En">
+        </div>
+
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname">Address_Ar  </label>
+            <input type="text" class="form-control" id="addressarabic" name="addressarabic" value="@ViewBag.selected.Address_Ar">
+        </div>
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname">City_Name_Ar  </label>
+            <input type="text" class="form-control" id="citynamear" name="citynamear" value="@ViewBag.selected.City_Name_Ar">
+        </div>
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname"> City_Name_En </label>
+            <input type="text" class="form-control" id="citynameeng" name="citynameeng" value="@ViewBag.selected.City_Name_En">
+        </div>
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname">Area </label>
+            <input type="text" class="form-control" id="area" name="area" value="@ViewBag.selected.Area">
+        </div>
+
+
+
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <button id="btnsave" class="btn btn-block btn-success " style="color:white">ویرایش</button>
+        </div>
+    </div>
+</div>
+@section Scripts  {
+    <script src="~/plugins/toastr/toastr.min.js"></script>
+    <script src="~/plugins/select2/select2.min.js"></script>
+
+    <script>
+
+        $("#Organization").val();
+        $("#Organization option:selected").text();
+
+        $("#Business").change(function () {
+
+            var requestBusinesID = new Object();
+            requestBusinesID.Id = parseInt($("#Business option:selected").val());
+
+
+            $.ajax({
+                url: "/Company/GetSubcategory/",
+                type: "POST",
+                data: JSON.stringify(requestBusinesID),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (recData) {
+                    AppendToDropDown(recData);
+
+                }
+
+            });
+        });
+
+        function AppendToDropDown(recData) {
+            $("#Organization").empty();
+
+            $.each(recData, function (index, value) {
+                $('#Organization').append(
+                    '<option value="' + value.organizationId + '">' + value.organizationtype + '</option>');
+            });
+
+            $("#Organization").select2();
+        }
+
+
+
+
+    </script>
+    <script>
+        $("#btnsave").click(function () {
+            var company = new Object();
+            company.id = parseInt($("#id").val());
+            company.business_Id = $("#Business").val();
+            company.organization_Id = $("#Organization").val();
+            company.organization_Name_Ar = $("#namearabic").val();
+            company.organization_Name_En = $("#nameenglish").val();
+            company.po_Box = $("#box").val();
+            company.phone_No = $("#phone").val();
+            company.cr_Number = $("#crnumber").val();
+            company.fax_No = $("#fax").val();
+            company.email = $("#email").val();
+            company.website = $("#website").val();
+            company.membership_Date = $("#membershipdate").val();
+            company.membership_Renew_Date = $("#membershiprenew").val();
+            company.membership_Next_RenewDdate = $("#memnextrenewdate").val();
+            company.company_Type = $("#companytype").val();
+            company.contact_Person_Ar = $("#contacrpersonarabic").val();
+            company.contact_Person_En = $("#contactpersoneng").val();
+            company.address_En = $("#addresseng").val();
+            company.address_Ar = $("#addressarabic").val();
+            company.city_Name_Ar = $("#citynamear").val();
+            company.city_Name_En = $("#citynameeng").val();
+            company.area = $("#area").val();
+
+
+            $.ajax({
+                url: "/Company/EditeById/",
+                type: "POST",
+                data: JSON.stringify(company),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (recData) {
+                    Succes(recData);
+                    //Clear();
+                    window.location.href ="/Home/Index"; 
+
+                   
+                }
+
+            });
+
+
+
+
+        });
+        function Succes(recData) {
+            if (recData) {
+                toastr.success("اطلاعات با موفقیت به روز رسانی شد", "Success");
+
+            }
+        }
+        //function Clear() {
+        //    $("#id").attr('value', '');
+        //    $("#Business").attr('value', '');
+        //    $("#Organization").attr('value','');
+        //    $("#namearabic").attr('value', '');
+        //    $("#nameenglish").attr('value', '');
+        //    $("#box").attr('value', '');
+        //    $("#phone").attr('value', '');
+        //    $("#crnumber").attr('value', '');
+        //    $("#fax").attr('value', '');
+        //    $("#email").attr('value', '');
+        //    $("#website").attr('value', '');
+        //    $("#membershipdate").attr('value', '');
+        //    $("#membershiprenew").attr('value', '');
+        //    $("#memnextrenewdate").attr('value', '');
+        //    $("#companytype").attr('value', '');
+        //    $("#contacrpersonarabic").attr('value', '');
+        //    $("#contactpersoneng").attr('value', '');
+        //    $("#addresseng").attr('value', '');
+        //    $("#addressarabic").attr('value', '');
+        //    $("#citynamear").attr('value', '');
+        //    $("#citynameeng").attr('value', '');
+        //    $("#area").attr('value', '');
+        //    $("#Organization").select2();
+
+
+        //}
+    </script>
+}

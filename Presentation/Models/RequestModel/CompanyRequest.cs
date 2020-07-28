@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Presentation.Models
+namespace Presentation.Models.RequestModel
 {
-    public class Company
+    public class CompanyRequest
     {
-        [Key]
-        public int Id { get; set; }
         public string Business_Id { get; set; }
         public string Organization_Id { get; set; }
         public string Organization_Name_Ar { get; set; }

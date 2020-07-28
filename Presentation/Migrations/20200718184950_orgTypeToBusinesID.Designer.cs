@@ -10,8 +10,8 @@ using Presentation.Data;
 namespace Presentation.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200713194241_init")]
-    partial class init
+    [Migration("20200718184950_orgTypeToBusinesID")]
+    partial class orgTypeToBusinesID
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -221,30 +221,6 @@ namespace Presentation.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Presentation.Models.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CategoryName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("InsertedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ParentId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Categories");
-                });
-
             modelBuilder.Entity("Presentation.Models.Company", b =>
                 {
                     b.Property<int>("Id")
@@ -259,6 +235,9 @@ namespace Presentation.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Area")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Business_Id")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Business_Type")
@@ -301,9 +280,6 @@ namespace Presentation.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Organization_Name_En")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Organization_Type")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone_No")

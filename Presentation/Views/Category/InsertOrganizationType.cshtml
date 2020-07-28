@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewData["Title"] = "InsertOrganizationCategory";
+}
+<style>
+    label {
+        float: left;
+    }
+
+    input {
+        direction: ltr;
+    }
+    #parent {
+        /* can be any value */
+        text-align: left !important;
+        direction: ltr !important;
+        position: relative !important;
+    }
+
+        #parent .select2-container--open + .select2-container--open {
+            left: auto !important;
+            right: 0 !important;
+            width: 100% !important;
+        }
+</style>
+
+<link href="~/plugins/toastr/toastr.css" rel="stylesheet" />
+<link href="~/plugins/select2/select2.min.css" rel="stylesheet" />
+
+<div class="container">
+
+    <div class="was-validated">
+        <br />
+
+
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname">  Organization Type</label>
+            <input type="text" class="form-control" id="organization" name="organization">
+        </div>
+        <div class="form-group col-md-6" style="margin-right:270px"  id='parent'>
+            <label for="uname"> Business_Type</label>
+
+            <select class="form-control" id="Business" name="Business">
+                <option></option>
+                @foreach (var item in ViewBag.result)
+                {
+                    <option value="@item.Id">@item.Name</option>
+
+                }
+
+            </select>
+        </div>
+
+
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <button id="btnsave" class="btn btn-block btn-success " style="color:white">افزودن</button>
+        </div>
+    </div>
+</div>
+@section Scripts  {
+    <script src="~/plugins/toastr/toastr.min.js"></script>
+    <script src="~/plugins/select2/select2.min.js"></script>
+
+    <script>
+        $(function () {
+            //$('select').select2({
+            //    dir: "rtl",
+            //    dropdownAutoWidth: true,
+            //    dropdownParent: $('#parent')
+            //});
+            $selectElement = $('#Business').select2({
+                placeholder: "Please select a business",
+                allowClear: true,
+                dir: "rtl",
+                dropdownAutoWidth: true
+                //dropdownParent: $('#parent')
+            })
+
+        });
+
+
+        $("#btnsave").click(function () {
+            var requestmodel = new Object();
+            requestmodel.businessid = parseInt($("#Business option:selected").val());
+            requestmodel.organizationtype = $("#organization").val();
+            $.ajax({
+                url: "/Category/InsertOrganizationType/",
+                type: "POST",
+                data: JSON.stringify(requestmodel),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (recData) {
+                    Succes(recData);
+                    Clear();
+                }
+            });
+            function Succes(recData) {
+                if (recData) {
+                    toastr.success("اطلاعات با موفقیت ثبت شد", "Success");
+
+                }
+            }
+            function Clear() {
+
+                $("#organization").val('');
+            }
+
+
+        });
+
+
+
+    </script>
+}
+

@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Presentation.Models
+namespace Presentation.ResponseModels
 {
-    public class Company
+    public class CompanyResponse
     {
-        [Key]
+       
         public int Id { get; set; }
         public string Business_Id { get; set; }
         public string Organization_Id { get; set; }
@@ -31,5 +30,8 @@ namespace Presentation.Models
         public string City_Name_Ar { get; set; }
         public string City_Name_En { get; set; }
         public string Area { get; set; }
+        public string Delete { get; set; }
+        public string Edite { get; set; }
+       
     }
 }

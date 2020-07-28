@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Presentation.Migrations
 {
-    public partial class init : Migration
+    public partial class orgTypeToBusinesID : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,28 +47,12 @@ namespace Presentation.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Categories",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryName = table.Column<string>(nullable: true),
-                    ParentId = table.Column<int>(nullable: false),
-                    InsertedDate = table.Column<DateTime>(nullable: false),
-                    UpdatedDate = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Categories", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Companies",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Organization_Type = table.Column<string>(nullable: true),
+                    Business_Id = table.Column<string>(nullable: true),
                     Business_Type = table.Column<string>(nullable: true),
                     Organization_Name_Ar = table.Column<string>(nullable: true),
                     Organization_Name_En = table.Column<string>(nullable: true),
@@ -273,9 +257,6 @@ namespace Presentation.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Companies");

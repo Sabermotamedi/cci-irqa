@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewData["Title"] = "InsertBusinessCategory";
+}
+<style>
+    label {
+        float: left;
+    }
+
+    input {
+        direction: ltr;
+    }
+</style>
+
+<link href="~/plugins/toastr/toastr.css" rel="stylesheet" />
+
+<div class="container">
+
+    <Form id="BusinesForm" action="#">
+        <br />
+
+
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname">  Business Type</label>
+            <input type="text" class="form-control" id="business" name="business">
+        </div>
+
+
+        <div class="form-group col-md-6" style="margin-right:270px">
+            @* <button id="btnsave" class="btn btn-block btn-success " style="color:white">افزودن</button>*@
+            <input type="button" value="افزودن" class="form-control btn btn-block btn-success " id="btnsave" name="btnsave">
+
+        </div>
+    </Form>
+</div>
+
+@section Scripts  {
+    <script src="~/plugins/toastr/toastr.min.js"></script>
+    <script src="~/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="~/plugins/jquery-validation/additional-methods.min.js"></script>
+
+    <script>
+
+
+        $("#BusinesForm").validate({
+            rules: {
+                business: {
+                    required: true,
+                    minlength: 5
+                }
+            }
+        });
+
+
+        $("#btnsave").click(function () {
+
+            name = $("#business").val();
+            $.ajax({
+                url: "/Category/InsertBusinessType/",
+                type: "POST",
+                data: JSON.stringify(name),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (recData) {
+                    Succes(recData);
+                    Clear();
+                }
+            });
+        });
+
+        function Succes(recData) {
+            if (recData) {
+                toastr.success("اطلاعات با موفقیت ثبت شد", "Success");
+
+            }
+        }
+        function Clear() {
+
+            $("#business").val('');
+        }
+
+
+    </script>
+}

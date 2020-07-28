@@ -10,8 +10,8 @@ using Presentation.Data;
 namespace Presentation.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200713200944_init2")]
-    partial class init2
+    [Migration("20200718190023_BusinesTypeToOrganizationID")]
+    partial class BusinesTypeToOrganizationID
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -237,7 +237,7 @@ namespace Presentation.Migrations
                     b.Property<string>("Area")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Business_Type")
+                    b.Property<string>("Business_Id")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("City_Name_Ar")
@@ -273,13 +273,13 @@ namespace Presentation.Migrations
                     b.Property<string>("Membership_Renew_Date")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Organization_Id")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Organization_Name_Ar")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Organization_Name_En")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Organization_Type")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone_No")

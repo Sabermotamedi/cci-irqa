@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewData["Title"] = "EditeOrganization";
+}
+<style>
+    label {
+        float: left;
+    }
+
+    input {
+        direction: ltr;
+    }
+</style>
+
+<link href="~/plugins/toastr/toastr.css" rel="stylesheet" />
+@*<link href="~/plugins/select2/select2.min.css" rel="stylesheet" />*@
+<div class="container">
+
+    <div class="was-validated">
+
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname">  Organization Type</label>
+            <input type="text" class="form-control" id="organization" name="organization" value="@ViewBag.organization.organization_type">
+        </div>
+
+
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <button id="btnsave" class="btn btn-block btn-success " style="color:white">ویرایش</button>
+        </div>
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname" style="visibility:hidden">  business Id</label>
+            <input style="visibility:hidden" type="text" class="form-control" id="businessid" name="businessid" value="@ViewBag.organization.business_id">
+        </div>
+        <div class="form-group col-md-6" style="margin-right:270px">
+            <label for="uname" style="visibility:hidden">  Organization Id</label>
+            <input style="visibility:hidden" type="text" class="form-control" id="organizationid" name="organizationid" value="@ViewBag.organization.organization_id">
+        </div>
+
+    </div>
+</div>
+@section Scripts  {
+    <script src="~/plugins/toastr/toastr.min.js"></script>
+    <script>
+        $("#organization").change(function () {
+            obj = new Object();
+            obj.orgname = $("#organization").val();
+
+            $("#btnsave").click(function () {
+
+                obj.orgid = $("#organizationid").val();
+
+                obj.busid = $("#businessid").val();
+                $.ajax({
+                    url: "/Category/EditeOrgById/",
+                    type: "POST",
+                    data: JSON.stringify(obj),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (recData) {
+                        Succes(recData);
+                        Clear();
+
+                    }
+
+                });
+            });
+        });
+
+        function Succes(recData) {
+            if (recData) {
+                toastr.success("اطلاعات با موفقیت ویرایش شد", "Success");
+
+            }
+        }
+        function Clear() {
+
+            $("#organization").val('');
+            $('#businessid').val('');
+            $('#organizationid').val('');
+            $('#organization').val('');
+        }
+    </script>
+}

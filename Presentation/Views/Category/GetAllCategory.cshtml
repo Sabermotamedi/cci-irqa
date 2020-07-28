@@ -1,0 +1,215 @@
+﻿@*  *@
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link href="~/plugins/select2/select2.min.css" rel="stylesheet" />
+<link href="~/plugins/datatables/dataTables.bootstrap4.css" rel="stylesheet" />
+<link href="~/plugins/toastr/toastr.css" rel="stylesheet" />
+
+<style>
+
+    .englishForm {
+        text-align: left;
+    }
+
+    .select2-container--open .select2-dropdown--above {
+        text-align: left;
+    }
+
+    .pointer {
+        cursor: pointer;
+        color: blue;
+    }
+</style>
+
+<div class="container" dir="ltr">
+
+    <div class="row">
+
+
+        <div class="col-md-4" dir="ltr">
+            <div class="form-group englishForm">
+                <label>Business Type</label>
+                <select id="Business" class="form-control select2" style="width: 100%" dir="ltr">
+                    <option></option>
+                    @foreach (var item in ViewBag.result)
+                    {
+                        <option value=@item.Id>@item.Name</option>
+                    }
+
+
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="card col-md-12">
+        <div class="card-header">
+            <h3 class="card-title">نتیجه جستجو</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead align="center">
+                    <tr dir="rtl">
+                        <th>Delete</th>
+                        <th>Edite</th>
+                        <th>Organization</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="expBody" align="center">
+                </tbody>
+                <tfoot align="center">
+                    <tr>
+
+                        <th>Delete</th>
+                        <th>Edite</th>
+                        <th>Organization</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+
+</div>
+
+
+<div class="modal fade" id="modal-danger" style="z-index:1000000000 !important">
+    <div class="modal-dialog">
+        <div class="modal-content bg-danger">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete item Question</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>آیا از حذف این رکورد اطمینان دارید؟&hellip;</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-outline-light" data-dismiss="modal">خیر</button>
+                <button type="button" class="btn btn-outline-light" id="CompanyId" value="" onclick="FinalDelete(this)">بله</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+@section Scripts  {
+    <script src="~/plugins/toastr/toastr.min.js"></script>
+    <script src="~/plugins/select2/select2.min.js"></script>
+    <script src="~/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="~/plugins/datatables/dataTables.bootstrap4.js"></script>
+    <script>
+
+
+
+
+        $(function () {
+
+            //Initialize Select2 Elements
+            $('.select2').select2();
+
+
+            $("#example1").DataTable({
+                "language": {
+                    "paginate": {
+                        "next": "بعدی",
+                        "previous": "قبلی"
+                    }
+                },
+                "info": false,
+            });
+            $selectElement = $('#Business').select2({
+                placeholder: "Please select a business",
+                allowClear: true
+            })
+
+
+        })
+
+      
+          
+   
+
+        $("#Business").change(function () {
+
+            var requestBusinesID = new Object();
+            requestBusinesID.Id = parseInt($("#Business option:selected").val());
+
+
+            $.ajax({
+                url: "/Category/AllSubCategory/",
+                type: "POST",
+                data: JSON.stringify(requestBusinesID),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (recData) {
+                    AppendToTable(recData);
+
+                }
+
+            });
+        });
+
+
+
+        function AppendToTable(recData) {
+
+
+            var table = $('#example1').DataTable();
+            table.clear();
+
+
+
+            $.each(recData, function (index, value) {
+                table.row.add([
+                    value.delete,
+                    value.edite,
+                    value.organization_type,
+
+
+                ]).node().id = value.id;
+                table.draw(false);
+            });
+
+
+        };
+        function deleteById(thisElem) {
+
+
+            $('#modal-danger').modal('show');
+
+            $("#modal-danger #CompanyId").val(thisElem.id);
+
+
+
+        }
+
+        function FinalDelete(thisElement) {
+            var id = thisElement.value;
+
+            $.ajax({
+                url: "/Category/DeleteOrganizationById/",
+                type: "POST",
+                data: JSON.stringify(id),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (recData) {
+                    $('#modal-danger').modal('toggle');
+                    toastr.success("رکورد مورد نظر با موفقیت حذف شد", "Success");
+                    $('#example1').DataTable().row('#' + id).remove().draw();
+                }
+
+            });
+        }
+
+        document.rea
+
+    </script>
+}
